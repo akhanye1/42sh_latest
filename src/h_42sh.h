@@ -22,13 +22,14 @@
 # include <termcap.h>
 # include <signal.h>
 # include <term.h>
+# include <sys/wait.h>
 # define TRUE 1
 # define FALSE 0
 # define TERM_BUF 30
 # define MAXWDIR 10000
 # define ARG_MAX 4096
 # define BINARY_MAX 5381
-# define PATH_MAX 255
+//# define PATH_MAX 255
 # define APPEND (info->append = TRUE)
 # define PF (info->p_flag)
 # define OUT_ND_IN (inf->fd[1] != 8 && inf->fd[0] != 1)
