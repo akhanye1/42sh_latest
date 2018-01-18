@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 11:52:33 by mkgosise          #+#    #+#             */
-/*   Updated: 2018/01/17 12:15:25 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/18 17:49:48 by skgatle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct		s_pipe
 	int				fildes[2];
 	int				fildes2[2];
 	int				fd_in;
-	int				tee_exec;
+	int				redin;
 	int				fd_red;
 	int				fd_stdin;
 	int				fd[3];

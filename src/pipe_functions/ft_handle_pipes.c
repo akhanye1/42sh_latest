@@ -6,7 +6,7 @@
 /*   By: skgatle <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 15:00:56 by skgatle           #+#    #+#             */
-/*   Updated: 2018/01/10 09:37:14 by skgatle          ###   ########.fr       */
+/*   Updated: 2018/01/18 17:46:52 by skgatle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int			ft_handle_pipes(char **args)
 		info.p_flag = FALSE;
 		info.builtin_act = FALSE;
 		info.exit_builtin = FALSE;
+		info.file = NULL;
 		if (ft_strchr(*args, '|'))
 			ft_run_pipes(*args, &info);
 		else

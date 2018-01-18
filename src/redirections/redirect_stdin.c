@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 04:19:13 by mkgosise          #+#    #+#             */
-/*   Updated: 2017/11/08 07:38:13 by skgatle          ###   ########.fr       */
+/*   Updated: 2018/01/18 17:48:52 by skgatle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			redirect_stdin(char *cmd, t_pipe *info)
 	}
 	else if (ft_strstr(cmd, "<"))
 		fd = get_file_fd(file);
-	if (fd == -1 || !(info->file = ft_strdup(file)))
+	if (fd == -1 || !(info->redin = fd))
 		return (-1);
 	ft_strdel(&file);
 	if (!isatty(STDIN_FILENO))
