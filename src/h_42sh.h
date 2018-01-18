@@ -22,7 +22,7 @@
 # include <termcap.h>
 # include <signal.h>
 # include <term.h>
-# include <wait.h>
+# include <sys/wait.h>
 # define TRUE 1
 # define FALSE 0
 # define TERM_BUF 30
