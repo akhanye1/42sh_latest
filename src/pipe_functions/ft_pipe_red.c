@@ -30,6 +30,7 @@ static void				ft_execute_pcmd(t_pipe *info)
 	if (ft_strstr(builtins, info->arg[0]))
 	{
 		builtin(info->arg, info->cmd, info);
+		free_all(NULL);
 		exit(EXIT_SUCCESS);
 	}
 	execve(info->path, info->arg, ft_get_environ());

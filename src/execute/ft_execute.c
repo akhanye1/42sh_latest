@@ -62,10 +62,14 @@ static int		ft_exe_cmd(t_pipe *info, char **args)
 	{
 		ft_putstr_fd("42sh: command not found: ", 2);
 		ft_putendl_fd(*args, 2);
+		free_all(NULL);
 		exit(0);
 	}
 	if ((execve(bin, args, ft_get_environ()) == -1))
+	{
+		free_all(NULL);
 		exit(0);
+	}
 	return (1);
 }
 

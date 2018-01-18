@@ -109,6 +109,7 @@ int					process2(char *sec, char **env, int *status)
 				ft_putstr(args[0]);
 				ft_putstr(" : command not found\n");
 				free_2d_array((void**)args);
+				free_all(NULL);
 				exit(1);
 			}
 		exit(1);

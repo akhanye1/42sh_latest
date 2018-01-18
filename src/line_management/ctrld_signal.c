@@ -25,5 +25,8 @@ void	ctrld_signal(int *i, char *temp, t_con *con)
 		clear_line(temp, con);
 	}
 	else
+	{
+		free_all(NULL);
 		exit(0);
+	}
 }
