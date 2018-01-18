@@ -31,6 +31,7 @@ int		main(void)
 	init_prompt(con);
 	init_screen(con);
 	init_autocomplete(con);
+	free_all(con);
 	while (TRUE)
 	{
 		ft_initialize_signals('m');

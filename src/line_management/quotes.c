@@ -126,9 +126,8 @@ char		check_line(t_con *con, char **line)
 		return (get_key_line(line, con));
 	if (!(trimmed = ft_strtrim(con->temp)))
 		return (temp_failure(line, con));
-	if ((ft_strlen(trimmed) > 0 && con->subshell) ||
-			trimmed[0] == '(')
-		return (manage_subshell(line, con, trimmed));
+	if (!(manage_subshell(con, trimmed)))
+		return (get_key_line(line, con));
 	if (ft_strlen(trimmed) > 0 && trimmed[0] != '!'
 			&& !ft_strequ(trimmed, "history"))
 		add_history(line, con);

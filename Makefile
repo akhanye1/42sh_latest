@@ -24,7 +24,7 @@ ERRORS = ft_errors.c
 DIR3 = $(addprefix error_handling/, $(ERRORS))
 HISTORY = ft_history.c history_action.c show_history.c
 DIR4 = $(addprefix history/, $(HISTORY))
-DIR5 = main.c
+DIR5 = main.c free.c
 SIGNALS = ft_handle_all.c
 DIR6 = $(addprefix signals/, $(SIGNALS))
 BACKTICKS = backticks_handler.c backticks_helper.c
@@ -36,7 +36,7 @@ EXEC = builtin.c filter_out_redirections.c ft_execute_helper.c exit.c\
 DIR9 = $(addprefix execute/, $(EXEC))
 LINE_M = canonical.c ctrlc_signal.c delkey.c ft_puts.c quotes.c\
 		 clipboard.c ctrld_signal.c ft_keyaction.c init_propmt.c screen.c copy.c\
-		 cursor.c	ft_keytrigger.c prompt.c words.c subshell.c
+		 cursor.c	ft_keytrigger.c prompt.c words.c subshell.c edit_subshell.c
 DIR10 = $(addprefix line_management/, $(LINE_M))
 PIPES = ft_handle_pipes.c ft_pipe_helper.c ft_pipe_recursive.c\
 	  ft_save_to_file.c ft_initialize_pipes.c ft_pipe_helper_func.c\
@@ -79,7 +79,7 @@ all: $(OBJ_DIR) $(LIBFT) $(NAME)
 $(OBJ_DIR): $(SRC)
 	@echo "\033[0;33mCompiling 42sh...\033[0m"
 	@mkdir -p $(OBJ_DIR)
-	@clang -c $(FLAGS) $(SRC)
+	@clang -c $(FLAGS) $(SRC) -g
 	@mv $(OBJ) $(OBJ_DIR)
 	@echo "\033[0;33mObject files moved to '$(OBJ_DIR)'\033[0m"
 

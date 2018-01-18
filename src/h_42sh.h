@@ -22,13 +22,14 @@
 # include <termcap.h>
 # include <signal.h>
 # include <term.h>
+# include <wait.h>
 # define TRUE 1
 # define FALSE 0
 # define TERM_BUF 30
 # define MAXWDIR 10000
 # define ARG_MAX 4096
 # define BINARY_MAX 5381
-# define PATH_MAX 255
+//# define PATH_MAX 255
 # define APPEND (info->append = TRUE)
 # define PF (info->p_flag)
 # define OUT_ND_IN (inf->fd[1] != 8 && inf->fd[0] != 1)
@@ -366,7 +367,13 @@ typedef struct		s_temp
 	int				i;
 }					t_temp;
 
-int					manage_subshell(char **line, t_con *con, char *trimmed);
+void				free_all(t_con *con);
+int					manage_subshell(t_con *con, char *trimmed);
+int					close_subshell(t_con *con, char *trimmed);
+int					combine_subshell(t_con *con, char *trimmed);
+int					add_subshell_commands(t_con *con, char *trimmed);
+int					report_subshell_error(char *trimmed,
+		char *stripped, t_con *con);
 int					canonical_off(void);
 int					canonical_on(void);
 int					set_canonical(void);

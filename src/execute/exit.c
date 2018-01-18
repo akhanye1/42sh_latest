@@ -14,7 +14,7 @@
 
 void	ft_exit(char **args, char *cmd)
 {
-	free(ft_get_con());
+	free_all(NULL);
 	ft_free2d((void**)args);
 	ft_strdel(&cmd);
 	exit(1);

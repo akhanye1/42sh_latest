@@ -42,139 +42,56 @@ static char	bracketsokay(char *trimmed)
 	return (foundindex == -1);
 }
 
-static int	report_subshell_error(char *trimmed, char *stripped, t_con *con, char **line)
+int	report_subshell_error(char *trimmed, char *stripped, t_con *con)
 {
 	ft_putendl("\n42sh: parse error near '('");
 	if (trimmed)
 		free(trimmed);
 	if (stripped)
 		free(stripped);
-	print_prompt(con);
 	con->subshell = 0;
+	print_prompt(con);
 	if (con->shellcommands)
 		ft_strdel(&con->shellcommands);
-	return (get_key_line(line, con));
+	return (FALSE);
 }
 
 
-static int	formatted_subshell(char *trimmed, char **line, t_con *con)
+static int	formatted_subshell(char *trimmed, t_con *con)
 {
 	int		last_index;
+	char	*fr;
 
 	if (bracketsokay(trimmed))
 	{
 		last_index = ft_strchr(trimmed, ')') - trimmed;
-		*line = ft_strsub(trimmed, 1, last_index - 1);
+		fr = ft_strsub(trimmed, 1, last_index - 1);
+		ft_bzero(con->temp, ft_strlen(con->temp));
+		ft_strcpy(con->temp, fr);
+		ft_strdel(&fr);
 		return (TRUE);
 	}
-	return (report_subshell_error(trimmed, NULL, con, line));
+	return (report_subshell_error(trimmed, NULL, con));
 }
 
-static void	add_to_subshell(t_con *con, char *trimmed)
+int		manage_subshell(t_con *con, char *trimmed)
 {
-	char	temp[500];
-	char	*fr;
-
-	if (!con->shellcommands)
+	if (ft_strlen(trimmed) == 0)
+		return (FALSE);
+	if (con->subshell || trimmed[0] == '(')
 	{
-		con->shellcommands = trimmed;
-		return ;
+		if (trimmed[0] == '(' && ft_strstr(trimmed, ")") &&
+				con->subshell == 0)
+			return (formatted_subshell(trimmed, con));
+		else if (trimmed[0] == '(')
+			return (add_subshell_commands(con, trimmed));
+		else if (trimmed[0] == ')')
+			return (close_subshell(con, trimmed));
+		else if (ft_strstr(trimmed, "(") ||
+				ft_strstr(trimmed, ")"))
+			return (report_subshell_error(trimmed, NULL, con));
+		else
+			return (combine_subshell(con, trimmed));
 	}
-	ft_bzero(temp, 500);
-	ft_strcpy(temp, " ; ");
-	ft_strcat(temp, trimmed);
-	fr = con->shellcommands;
-	con->shellcommands = ft_strjoin(con->shellcommands, temp);
-	free(fr);
-	free(trimmed);
-}
-
-static int	add_subshell_commands(char **line, t_con *con, char *trimmed)
-{
-	int		index;
-	char	*str;
-	char	*stripped;
-
-	if (trimmed[0] == '(')
-	{
-		if (!(stripped = ft_strtrim(trimmed + 1)))
-			return (report_subshell_error(trimmed, NULL, con, line));
-		if (stripped[0] == '(')
-			return (report_subshell_error(trimmed, stripped, con, line));
-		con->subshell++;
-		if (ft_strchr(stripped, '('))
-		{
-			index = ft_strchr(stripped, '(') - trimmed;
-			str = ft_strsub(stripped, index + 1, ft_strlen(stripped));
-			free(trimmed);
-			trimmed = ft_strsub(stripped, 0, index - 1);
-			add_to_subshell(con, trimmed);
-			return (manage_subshell(line, con, trimmed));
-		}
-		add_to_subshell(con, stripped);
-		free(trimmed);
-		print_prompt(con);
-		return (get_key_line(line, con));
-	}
-	if (con->subshell == 0)
-		return (report_subshell_error(trimmed, NULL, con, line));
-	con->subshell++;
-	index = ft_strchr(trimmed, '(') - trimmed;
-	stripped = ft_strsub(trimmed, 0, index - 1);
-	add_to_subshell(con, stripped);
-	return (manage_subshell(line, con, trimmed + (index + 1)));
-}
-
-int		combine_shell(t_con *con, char **line)
-{
-	if (!con->shellcommands)
-		return (get_key_line(line, con));
-	*line = ft_strdup(con->shellcommands);
-	ft_putstr("Command Given : ");
-	ft_putendl(*line);
-	ft_strdel(&con->shellcommands);
-	return (TRUE);
-}
-
-int		close_subshell(t_con *con, char **line, char *trimmed)
-{
-	int		index;
-	char	*str;
-
-	if (trimmed[0] == ')')
-	{
-		con->subshell--;
-		if (con->subshell == 0)
-		{
-			free(trimmed);
-			return (combine_shell(con, line));
-		}
-		print_prompt(con);
-		return (get_key_line(line, con));
-	}
-	index = ft_strchr(trimmed, ')') - trimmed;
-	str = ft_strsub(trimmed, 0, index - 1);
-	add_to_subshell(con, str);
-	return (combine_shell(con, line));
-}
-
-int		combine_subshell(char **line, t_con *con, char *trimmed)
-{
-	add_to_subshell(con, trimmed);
-	print_prompt(con);
-	return (get_key_line(line, con));
-}
-
-int		manage_subshell(char **line, t_con *con, char *trimmed)
-{
-	if (trimmed[0] == '(' && ft_strstr(trimmed, ")") &&
-			con->subshell == 0)
-		return (formatted_subshell(trimmed, line, con));
-	if (ft_strstr(trimmed, "("))
-		add_subshell_commands(line, con, trimmed);
-	else if (ft_strstr(trimmed, ")"))
-		close_subshell(con, line, trimmed);
-	else
-		combine_subshell(line, con, trimmed);
 	return (TRUE);
 }

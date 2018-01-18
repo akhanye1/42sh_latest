@@ -38,7 +38,7 @@ static void print_subshell(char *prompt, int num)
 		ft_strcat(prompt, "subsh ");
 	len = ft_strlen(prompt);
 	prompt[len - 1] = '>';
-	//ft_strcat(prompt, "> ");
+	ft_strcat(prompt, " ");
 }
 
 void	print_prompt(t_con *con)
