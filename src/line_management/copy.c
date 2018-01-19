@@ -61,7 +61,7 @@ static void	copy_right(int *i, char *temp, t_con *con, int *ind)
 	else
 		ind[1] = *i + 1;
 	highlight_word(con, temp, ind);
-	move_cursor('r', i, NULL);
+	move_cursor('r', i, NULL, con);
 }
 
 static void	copy_left(int *i, char *temp, t_con *con, int *ind)
@@ -76,7 +76,7 @@ static void	copy_left(int *i, char *temp, t_con *con, int *ind)
 	else
 		ind[0] = *i - 1;
 	highlight_word(con, temp, ind);
-	move_cursor('l', i, NULL);
+	move_cursor('l', i, NULL, con);
 }
 
 void		copy_selection(int act, int *i, char *temp, t_con *con)

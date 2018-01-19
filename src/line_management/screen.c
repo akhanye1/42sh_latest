@@ -42,6 +42,7 @@ void		init_screen(t_con *con)
 	con->screen.height = tgetnum("li");
 	con->screen.mw_width = 0;
 	con->screen.padding = 0;
+	con->screen.add_y = 0;
 	con->history = NULL;
 	con->clipboard = NULL;
 }

@@ -309,6 +309,7 @@ typedef struct		s_screen
 	size_t			min_y;
 	size_t			min_x;
 	size_t			y;
+	size_t			add_y;
 	size_t			mw_width;
 	size_t			padding;
 }					t_screen;
@@ -368,6 +369,8 @@ typedef struct		s_temp
 }					t_temp;
 
 void				free_all(t_con *con);
+void				smart_right(int *i, t_con *con);
+void				smart_left(int *i, t_con *con);
 int					manage_subshell(t_con *con, char *trimmed);
 int					close_subshell(t_con *con, char *trimmed);
 int					combine_subshell(t_con *con, char *trimmed);
@@ -384,7 +387,7 @@ char				*get_history(t_history **head, char dire);
 int					get_key_line(char **line, t_con *con);
 void				init_screen(t_con *con);
 void				clear_line(char *str, t_con *con);
-void				move_cursor(char dir, int *i, t_con *con);
+void				move_cursor(char dir, int *i, t_con *con, t_con *head);
 int					move_word(int act, int *i, char *temp, t_con *con);
 void				copy_selection(int act, int *i, char *temp, t_con *con);
 void				del_left(char *temp, int *i, t_con *con);

@@ -37,7 +37,7 @@ void	clear_line(char *str, t_con *con)
 	search(NULL, NULL, con);
 }
 
-void	move_cursor(char dir, int *i, t_con *con)
+void	move_cursor(char dir, int *i, t_con *con, t_con *head)
 {
 	char	buf[TERM_BUF];
 	char	*ap;
@@ -49,7 +49,8 @@ void	move_cursor(char dir, int *i, t_con *con)
 	if (dir == 'l')
 		tputs(tgetstr("le", &ap), 1, ft_puts);
 	else if (dir == 'r')
-		tputs(tgetstr("nd", &ap), 1, ft_puts);
+		//tputs(tgetstr("nd", &ap), 1, ft_puts);
+		smart_right(i, head);
 }
 
 void	home_key(int *i, t_con *con)

@@ -24,7 +24,7 @@ void		del_left(char *temp, int *i, t_con *con)
 		ft_strcpy(temp + (*i - 1), copy);
 	}
 	clear_line(temp, con);
-	move_cursor('l', i, NULL);
+	move_cursor('l', i, NULL, con);
 }
 
 void		del_right(char *temp, int *i, t_con *con)

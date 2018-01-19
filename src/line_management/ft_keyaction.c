@@ -26,7 +26,7 @@ static void	input_key(int act, char *temp, t_con *con)
 		free(copy);
 	}
 	clear_line(temp, con);
-	move_cursor('r', &con->index, NULL);
+	move_cursor('r', &con->index, NULL, con);
 }
 
 static void	input_tab(char *temp, t_con *con)
@@ -46,7 +46,7 @@ static void	input_tab(char *temp, t_con *con)
 	clear_line(temp, con);
 	n = -1;
 	while (++n < 4)
-		move_cursor('r', &(con->index), NULL);
+		move_cursor('r', &(con->index), NULL, con);
 }
 
 void		k_more(int act, char *temp, t_con *con)
@@ -91,9 +91,9 @@ void		k_action(int act, t_con *con)
 	else if (act == KEY_DOWN)
 		find_history('d', &con->index, con->temp, con);
 	else if (act == KEY_RIGHT && con->index < len)
-		move_cursor('r', &(con->index), con);
+		move_cursor('r', &(con->index), con, con);
 	else if (act == KEY_LEFT && con->index > 0)
-		move_cursor('l', &(con->index), con);
+		move_cursor('l', &(con->index), con, con);
 	else
 		k_more(act, con->temp, con);
 }
