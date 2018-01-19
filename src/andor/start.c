@@ -6,7 +6,7 @@
 /*   By: angonyam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 15:02:24 by angonyam          #+#    #+#             */
-/*   Updated: 2018/01/19 13:57:22 by angonyam         ###   ########.fr       */
+/*   Updated: 2018/01/19 14:14:17 by nmbotho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int			parse_checker(char *str)
 	checker = ft_strsplit(str, ' ');
 	if ((checker[0][0] == '|' && checker[1][0] == '&') ||
 		(checker[0][0] == '&' && checker[1][0] == '|') ||
-	   (checker[0][0] == '|' && checker[1][0] == '|') ||
-	   (checker[0][0] == '&' && checker[1][0] == '&'))
+		(checker[0][0] == '|' && checker[1][0] == '|') ||
+		(checker[0][0] == '&' && checker[1][0] == '&'))
 	{
 		ft_putendl("42sh: parse error");
 		free_2d_array((void**)checker);

@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 11:52:33 by mkgosise          #+#    #+#             */
-/*   Updated: 2018/01/19 14:02:54 by angonyam         ###   ########.fr       */
+/*   Updated: 2018/01/19 14:15:35 by nmbotho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -444,8 +444,8 @@ char				action_history(char *trimmed, t_con *con, char **line);
 */
 typedef struct		s_andor
 {
-    char			*comm;
-    struct s_andor	*next;
+	char			*comm;
+	struct s_andor	*next;
 }					t_andor;
 
 void				free_2d_array(void **array);
