@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:27:40 by akhanye           #+#    #+#             */
-/*   Updated: 2018/01/17 10:50:42 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 10:22:18 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int				get_key_line(char **line, t_con *con)
 			break ;
 		k_action(key, con);
 	}
+	con->screen.add_y = 0;
 	if (key == KEY_ENTER)
 		check_line(con, line);
 	return (1);

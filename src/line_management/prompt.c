@@ -6,13 +6,13 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 08:51:46 by akhanye           #+#    #+#             */
-/*   Updated: 2018/01/18 13:56:42 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 11:56:49 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../h_42sh.h"
 
-void	remove_below(void)
+void			remove_below(void)
 {
 	char	buf[TERM_BUF];
 	char	*ap;
@@ -22,13 +22,13 @@ void	remove_below(void)
 	tputs(tgetstr("cd", &ap), 1, ft_puts);
 }
 
-int		temp_failure(char **line, t_con *con)
+int				temp_failure(char **line, t_con *con)
 {
 	print_prompt(con);
 	return (get_key_line(line, con));
 }
 
-static void print_subshell(char *prompt, int num)
+static void		print_subshell(char *prompt, int num)
 {
 	int	len;
 
@@ -41,7 +41,7 @@ static void print_subshell(char *prompt, int num)
 	ft_strcat(prompt, " ");
 }
 
-void	print_prompt(t_con *con)
+void			print_prompt(t_con *con)
 {
 	char	prompt[100];
 

@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 11:52:33 by mkgosise          #+#    #+#             */
-/*   Updated: 2018/01/18 17:49:48 by skgatle          ###   ########.fr       */
+/*   Updated: 2018/01/19 12:02:30 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MAXWDIR 10000
 # define ARG_MAX 4096
 # define BINARY_MAX 5381
-//# define PATH_MAX 255
+# define PATH_MAX 255
 # define APPEND (info->append = TRUE)
 # define PF (info->p_flag)
 # define OUT_ND_IN (inf->fd[1] != 8 && inf->fd[0] != 1)
@@ -369,6 +369,7 @@ typedef struct		s_temp
 }					t_temp;
 
 void				free_all(t_con *con);
+int					history_command(char **line, t_con *con);
 void				smart_right(int *i, t_con *con);
 void				smart_left(int *i, t_con *con);
 int					manage_subshell(t_con *con, char *trimmed);

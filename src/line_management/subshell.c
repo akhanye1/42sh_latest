@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 11:26:01 by akhanye           #+#    #+#             */
-/*   Updated: 2018/01/18 13:56:40 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 10:51:21 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@ static char	bracketsokay(char *trimmed)
 	char	brackets[50];
 	int		i;
 	int		foundindex;
-	int		bracketsfound;
 
 	ft_bzero(brackets, 50);
 	i = -1;
 	foundindex = -1;
-	bracketsfound = 0;
 	while (trimmed[++i])
 	{
 		if (trimmed[i] == '(')
 		{
 			brackets[++foundindex] = '(';
-			if (++bracketsfound == 2)
+			if (foundindex == 2)
 				return (FALSE);
 		}
 		if (trimmed[i] == ')')
@@ -42,7 +40,7 @@ static char	bracketsokay(char *trimmed)
 	return (foundindex == -1);
 }
 
-int	report_subshell_error(char *trimmed, char *stripped, t_con *con)
+int			report_subshell_error(char *trimmed, char *stripped, t_con *con)
 {
 	ft_putendl("\n42sh: parse error near '('");
 	if (trimmed)
@@ -55,7 +53,6 @@ int	report_subshell_error(char *trimmed, char *stripped, t_con *con)
 		ft_strdel(&con->shellcommands);
 	return (FALSE);
 }
-
 
 static int	formatted_subshell(char *trimmed, t_con *con)
 {
@@ -74,10 +71,13 @@ static int	formatted_subshell(char *trimmed, t_con *con)
 	return (report_subshell_error(trimmed, NULL, con));
 }
 
-int		manage_subshell(t_con *con, char *trimmed)
+int			manage_subshell(t_con *con, char *trimmed)
 {
 	if (ft_strlen(trimmed) == 0)
+	{
+		print_prompt(con);
 		return (FALSE);
+	}
 	if (con->subshell || trimmed[0] == '(')
 	{
 		if (trimmed[0] == '(' && ft_strstr(trimmed, ")") &&

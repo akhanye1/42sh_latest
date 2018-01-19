@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:04:43 by akhanye           #+#    #+#             */
-/*   Updated: 2017/11/07 10:06:50 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 12:01:14 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void		show_history(t_con *con)
 		temp = temp->next;
 	}
 	print_prompt(con);
+}
+
+int			history_command(char **line, t_con *con)
+{
+	show_history(con);
+	return (get_key_line(line, con));
 }

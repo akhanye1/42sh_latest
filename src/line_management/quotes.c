@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 15:29:07 by akhanye           #+#    #+#             */
-/*   Updated: 2018/01/18 13:40:13 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 12:01:17 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,7 @@ char		check_line(t_con *con, char **line)
 	else
 	{
 		if (ft_strequ(trimmed, "history"))
-		{
-			show_history(con);
-			return (get_key_line(line, con));
-		}
+			return (history_command(line, con));
 		else if (!action_history(trimmed, con, line))
 			return (get_key_line(line, con));
 	}

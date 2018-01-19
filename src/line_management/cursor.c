@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:26:08 by akhanye           #+#    #+#             */
-/*   Updated: 2017/12/12 09:38:55 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 11:56:03 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	move_cursor(char dir, int *i, t_con *con, t_con *head)
 	if (dir == 'l')
 		tputs(tgetstr("le", &ap), 1, ft_puts);
 	else if (dir == 'r')
-		//tputs(tgetstr("nd", &ap), 1, ft_puts);
 		smart_right(i, head);
 }
 
@@ -60,7 +59,8 @@ void	home_key(int *i, t_con *con)
 
 	ft_bzero(buf, TERM_BUF);
 	ap = buf;
-	tputs(tgoto(tgetstr("cm", &ap), 3, con->screen.min_y), 1, ft_puts);
+	tputs(tgoto(tgetstr("cm", &ap), con->prompt_len,
+				con->screen.min_y), 1, ft_puts);
 	(*i) = 0;
 }
 
@@ -71,8 +71,11 @@ void	end_key(int *i, int str_len, t_con *con)
 
 	ft_bzero(buf, TERM_BUF);
 	ap = buf;
-	tputs(tgoto(tgetstr("cm", &ap), 3 + str_len,
-				con->screen.min_y), 1, ft_puts);
+	if (con->screen.width)
+		con->screen.add_y = str_len / con->screen.width;
+	tputs(tgoto(tgetstr("cm", &ap), con->prompt_len +
+		(str_len % con->screen.width), con->screen.min_y +
+		con->screen.add_y), 1, ft_puts);
 	(*i) = str_len;
 }
 
@@ -86,5 +89,5 @@ void	find_history(char dir, int *i, char *temp, t_con *con)
 	dmp = get_history(NULL, dir);
 	ft_strcpy(temp, dmp);
 	clear_line(temp, con);
-	end_key(i, ft_strlen(temp), con);
+	end_key(i, ft_strlen(dmp), con);
 }
