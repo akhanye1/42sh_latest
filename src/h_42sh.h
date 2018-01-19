@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 11:52:33 by mkgosise          #+#    #+#             */
-/*   Updated: 2018/01/19 12:02:30 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 14:02:54 by angonyam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@
 # define KEY_HOME_COPY -23279168
 # define KEY_CTRL_D 4
 # define KEY_TAB 9
+
+int					error_check(char *str);
 
 /*
 ** ENVIRONMENT

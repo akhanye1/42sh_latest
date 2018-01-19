@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 11:50:09 by mkgosise          #+#    #+#             */
-/*   Updated: 2018/01/17 10:13:52 by akhanye          ###   ########.fr       */
+/*   Updated: 2018/01/19 14:09:40 by angonyam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int		main(void)
 		ft_initialize_signals('m');
 		print_prompt(con);
 		get_key_line(&line, con);
+		if (error_check(line) == -1)
+			continue ;
 		if (ft_strstr(line, "&&") || ft_strstr(line, "||"))
 			andor_management(line, ft_get_environ(), &empty);
 		else

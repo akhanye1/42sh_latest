@@ -6,7 +6,7 @@
 #    By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/11 17:46:12 by mkgosise          #+#    #+#              #
-#    Updated: 2018/01/17 14:56:10 by akhanye          ###   ########.fr        #
+#    Updated: 2018/01/19 14:04:05 by angonyam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ERRORS = ft_errors.c
 DIR3 = $(addprefix error_handling/, $(ERRORS))
 HISTORY = ft_history.c history_action.c show_history.c
 DIR4 = $(addprefix history/, $(HISTORY))
-DIR5 = main.c free.c
+DIR5 = main.c free.c error.c
 SIGNALS = ft_handle_all.c
 DIR6 = $(addprefix signals/, $(SIGNALS))
 BACKTICKS = backticks_handler.c backticks_helper.c
