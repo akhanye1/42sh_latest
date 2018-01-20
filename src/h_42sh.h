@@ -6,7 +6,7 @@
 /*   By: mkgosise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 11:52:33 by mkgosise          #+#    #+#             */
-/*   Updated: 2018/01/19 14:15:35 by nmbotho          ###   ########.fr       */
+/*   Updated: 2018/01/20 10:18:17 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
 # define KEY_DEL 279151126
 # define KEY_HOME 279172
 # define KEY_END 279170
-# define KEY_CTRL_LEFT -23278872
-# define KEY_CTRL_RIGHT -23278873
+# define KEY_CTRL_LEFT 27279168
+# define KEY_CTRL_RIGHT 27279167
 # define KEY_ENTER 10
 # define KEY_COPY_LEFT -23279172
 # define KEY_COPY_RIGHT -23279173
